@@ -31,7 +31,7 @@ public class CallbackTest {
     }
 
     @Test
-    void shouldCallbackTest() throws InterruptedException {
+    void shouldCallbackTest()  {
         // загрузка страницы
        open("http://0.0.0.0:9999");
     }
