@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class CallbackTest {
@@ -19,17 +20,21 @@ public class CallbackTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
     void tearDown() {
         driver.quit();
-        //driver = null;
+        driver = null;
     }
 
     @Test
-    void CorrectValueTest() {
+    void correctValueTest() {
         driver.get("http://localhost:9999");
         driver.findElement((By.cssSelector("[data-test-id=name] input"))).sendKeys("Николай Римский-Корсаков");
         driver.findElement((By.cssSelector("[data-test-id=phone] input"))).sendKeys("+79991234567");
@@ -40,7 +45,7 @@ public class CallbackTest {
     }
 
     @Test
-    void notCorrectLatinNameTest() {
+    void notCorrectLatinNameTest()  {
         driver.get("http://localhost:9999");
         driver.findElement((By.cssSelector("[data-test-id=name] input"))).sendKeys("Нiколай Римский-Корсаков");
         driver.findElement((By.cssSelector("[data-test-id=phone] input"))).sendKeys("+79991234567");
