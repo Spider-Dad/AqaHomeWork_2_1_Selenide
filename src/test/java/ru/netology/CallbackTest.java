@@ -128,16 +128,11 @@ public class CallbackTest {
     void notPushAgreementTest() {
         driver.findElement((By.cssSelector("[data-test-id=name] input"))).sendKeys("Николай Римский-Корсаков");
         driver.findElement((By.cssSelector("[data-test-id=phone] input"))).sendKeys("+799912345677");
-        WebElement agreementCheckbox = driver.findElement((By.cssSelector("[data-test-id=agreement]")));
-
-        boolean isCheckboxDisplayed = agreementCheckbox.isDisplayed();
-        Assertions.assertTrue(isCheckboxDisplayed);
-
-        boolean isChecked = agreementCheckbox.isSelected();
-        Assertions.assertFalse(isChecked);
 
         driver.findElement(By.cssSelector("button")).click();
 
+        WebElement invalidCheckbox = driver.findElement(By.cssSelector(".input_invalid [name]"));
+        Assertions.assertTrue(invalidCheckbox.isDisplayed());
 
     }
 
