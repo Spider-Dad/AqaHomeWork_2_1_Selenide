@@ -127,11 +127,11 @@ public class CallbackTest {
     @Test
     void notPushAgreementTest() {
         driver.findElement((By.cssSelector("[data-test-id=name] input"))).sendKeys("Николай Римский-Корсаков");
-        driver.findElement((By.cssSelector("[data-test-id=phone] input"))).sendKeys("+799912345677");
+        driver.findElement((By.cssSelector("[data-test-id=phone] input"))).sendKeys("+79991234567");
 
         driver.findElement(By.cssSelector("button")).click();
 
-        WebElement invalidCheckbox = driver.findElement(By.cssSelector(".input_invalid [name]"));
+        WebElement invalidCheckbox = driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid .checkbox__box"));
         Assertions.assertTrue(invalidCheckbox.isDisplayed());
 
     }
